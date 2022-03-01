@@ -91,7 +91,7 @@ then
 
     mkdir -p "/etc/openvpn/movpn"
     chmod 700 "/etc/openvpn/movpn"
-    
+
 else
     echo "Initializing..."
     apt update -y && apt upgrade -y && apt install git -y && apt install make -y
@@ -110,7 +110,7 @@ else
     echo "\$ENV{'KEY_CITY'} = \"Caratinga\";"              >> "$PATH_SSL_ADMIN/ssl-admin.conf"
     echo "\$ENV{'KEY_ORG'} = \"You have a big problem\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
     echo "\$ENV{'KEY_EMAIL'} = \"sranonymouss@gmail.com\";">> "$PATH_SSL_ADMIN/ssl-admin.conf"
-
+fi
 
 #first menu S option
 #after says y option to all others prompts
