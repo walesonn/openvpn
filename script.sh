@@ -120,10 +120,23 @@ then
     echo "port 1194"                            >> ~/openvpn/client.conf
     echo "dev tun"                              >> ~/openvpn/client.conf
     echo "nobind"                               >> ~/openvpn/client.conf
+    echo "remote-cert-tls server"               >> ~/openvpn/client.conf
     echo "tls-auth /etc/openvpn/movpn/ta.key 1" >> ~/openvpn/client.conf
     echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> ~/openvpn/client.conf
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.conf
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.conf
+
+    echo "client"                               >> ~/openvpn/client.ovpn
+    echo "proto udp"                            >> ~/openvpn/client.ovpn
+    echo "remote $ip"                           >> ~/openvpn/client.ovpn
+    echo "port 1194"                            >> ~/openvpn/client.ovpn
+    echo "dev tun"                              >> ~/openvpn/client.ovpn
+    echo "nobind"                               >> ~/openvpn/client.ovpn
+    echo "remote-cert-tls server"               >> ~/openvpn/client.conf
+    echo "tls-auth /etc/openvpn/movpn/ta.key 1" >> ~/openvpn/client.ovpn
+    echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> ~/openvpn/client.ovpn
+    echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.ovpn
+    echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.ovpn
 
 
 else
