@@ -28,18 +28,18 @@ rm /tmp/EasyRSA* \
 echo "$LOCAL" \
 mkdir -p "$LOCAL" \
 
-read -p "country Ex[BR]:" COUNTRY
-COUNTRY=${COUNTRY:-BR}
-read -p "province Ex[Minas Gerais]:" PROVINCE
-PROVINCE=${PROVINCE:-Minas Gerais}
-read -p "city: Ex[Piedade de Caratinga]" CITY
-CITY=${CITY:-Piedade de Caratinga}
-read -p "organization Ex[balaco]" ORG
-ORG=${ORG:-balaco}
-read -p "email [admin@localhost.com]:" EMAIL
-EMAIL=${EMAIL:-admin@localhost.com}
-read -p "organization social name Ex[balaco Inc.]" OU
-OU=${OU:-balaco Inc.}
+# read -p "country Ex[BR]:" COUNTRY
+# COUNTRY=${COUNTRY:-BR}
+# read -p "province Ex[Minas Gerais]:" PROVINCE
+# PROVINCE=${PROVINCE:-Minas Gerais}
+# read -p "city: Ex[Piedade de Caratinga]" CITY
+# CITY=${CITY:-Piedade de Caratinga}
+# read -p "organization Ex[balaco]" ORG
+# ORG=${ORG:-balaco}
+# read -p "email [admin@localhost.com]:" EMAIL
+# EMAIL=${EMAIL:-admin@localhost.com}
+# read -p "organization social name Ex[balaco Inc.]" OU
+# OU=${OU:-balaco Inc.}
 
 # echo "set_var EASYRSA_PKI        \"$LOCAL\""      >> ~/EasyRSA-3.0.8/vars
 # echo "set_var EASYRSA_REQ_COUNTRY \"$COUNTRY\""   >> ~/EasyRSA-3.0.8/vars
