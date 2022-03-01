@@ -127,7 +127,7 @@ then
 
     read -p "client [crt] name:" client
     
-    echo "client"                               >> ~/openvpn/client.conf
+    echo "client"                               > ~/openvpn/client.conf
     echo "proto udp"                            >> ~/openvpn/client.conf
     echo "remote $ip"                           >> ~/openvpn/client.conf
     echo "port 1194"                            >> ~/openvpn/client.conf
@@ -139,7 +139,7 @@ then
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.conf
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.conf
 
-    echo "client"                               >> ~/openvpn/client.ovpn
+    echo "client"                               > ~/openvpn/client.ovpn
     echo "proto udp"                            >> ~/openvpn/client.ovpn
     echo "remote $ip"                           >> ~/openvpn/client.ovpn
     echo "port 1194"                            >> ~/openvpn/client.ovpn
