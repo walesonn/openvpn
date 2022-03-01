@@ -76,11 +76,12 @@
 
 DIR=~/openvpn/ssl-admin
 
-if [ !-d "$DIR" ]; then
-
-    echo "Initializing..."
-    sleep 3 
-    apt update -y && apt upgrade -y && apt install git -y 
-    git clone https://github.com/shadowbq/ssl-admin.git
+if [ -d "$DIR" ]; then
+    rm -rf "$DIR"
 fi
-    cd "$DIR" && ./configure && make install
+
+echo "Initializing..."
+sleep 3 
+apt update -y && apt upgrade -y && apt install git -y 
+git clone https://github.com/shadowbq/ssl-admin.git
+cd "$DIR" && ./configure && make install
