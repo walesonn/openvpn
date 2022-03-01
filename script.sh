@@ -78,10 +78,12 @@ DIR=~/openvpn/ssl-admin
 PATH_SSL_ADMIN="/etc/ssl-admin"
 PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
 PATH_MOVPN="/etc/openvpn/movpn"
+SERVER_CONF=~/openvpn/movpn-04-01-server.conf
 
 if [[ -d "$DIR" ]]
 then
     # rm -rf "$DIR"
+    
     ssl-admin 
     mkdir -p "$PATH_MOVPN"
     chmod 700 "$PATH_MOVPN"
@@ -89,7 +91,8 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
     cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
-    
+    cat "$SERVER_CONF" | openvpn --config
+
 else
 
     if [[ -f "$PATH_CONFIG" ]]
