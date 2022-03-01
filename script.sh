@@ -80,7 +80,7 @@ PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
 
 if [[ -d "$DIR" ]]
 then
-    rm -rf "$DIR"
+    # rm -rf "$DIR"
     ssl-admin \
 
     mkdir -p "/etc/openvpn/movpn"
