@@ -98,3 +98,5 @@ echo "$ENV{'KEY_PROVINCE'} = \"Minas gerais\";"       >> "$PATH_SSL_ADMIN/ssl-ad
 echo "$ENV{'KEY_CITY'} = \"Caratinga\";"              >> "$PATH_SSL_ADMIN/ssl-admin.conf"
 echo "$ENV{'KEY_ORG'} = \"You have a big problem\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
 echo "$ENV{'KEY_EMAIL'} = \"sranonymouss@gmail.com\";">> "$PATH_SSL_ADMIN/ssl-admin.conf"
+
+ssl-admin
