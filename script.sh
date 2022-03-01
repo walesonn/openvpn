@@ -88,4 +88,4 @@ chmod +x "$DIR/configure"
 cd "$DIR" && ./configure
 cd "$DIR" && make install
 cp "$PATH_SSL_ADMIN/ssl-admin.conf.default" "$PATH_SSL_ADMIN/ssl-admin.conf"
-ssl-admin
+chmod ug+rw "$PATH_SSL_ADMIN/ssl-admin.conf"
