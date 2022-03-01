@@ -90,7 +90,9 @@ then
     cp -a "$PATH_SSL_ADMIN/active/ca.crt" "$PATH_MOVPN/movpn-ca.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
-    # cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
+    cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
+
+    openvpn --config "$SERVER_CONF" --askpass
     
     ip=$(curl icanhazip.com)
 
@@ -106,7 +108,6 @@ then
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.conf
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.conf
 
-    # openvpn --config "$SERVER_CONF" --askpass
 
 else
 
