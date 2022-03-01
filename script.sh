@@ -92,19 +92,19 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
     # cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
     
-    touch "~/openvpn/client.conf"
+    ip=$(curl icanhazip.com)
 
     read -p "client [crt] name:" client
     
-    echo "client" >> "~/openvpn/client.conf"
-    echo "proto udp" >> "~/openvpn/client.conf"
-    echo "remote $(curl icanhazip.com)" >> "~/openvpn/client.conf"
-    echo "port 1194" >> "~/openvpn/client.conf"
-    echo "dev tun" >> "~/openvpn/client.conf"
-    echo "nobind" >> "~/openvpn/client.conf"
-    echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> "~/openvpn/client.conf"
-    echo "cert /etc/openvpn/movpn/$client.crt" >> "~/openvpn/client.conf"
-    echo "key  /etc/openvpn/movpn/$client.key" >> "~/openvpn/client.conf"
+    echo "client"                               >> ~/openvpn/client.conf
+    echo "proto udp"                            >> ~/openvpn/client.conf
+    echo "remote $ip"                           >> ~/openvpn/client.conf
+    echo "port 1194"                            >> ~/openvpn/client.conf
+    echo "dev tun"                              >> ~/openvpn/client.conf
+    echo "nobind"                               >> ~/openvpn/client.conf
+    echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> ~/openvpn/client.conf
+    echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.conf
+    echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.conf
 
     # openvpn --config "$SERVER_CONF" --askpass
 
