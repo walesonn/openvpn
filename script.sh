@@ -40,31 +40,52 @@ EMAIL=${EMAIL:-admin@localhost.com}
 read -p "organization social name Ex[balaco Inc.]" OU
 OU=${OU:-balaco Inc.}
 
-echo "set_var EASYRSA_PKI        \"$LOCAL\""      >> ~/EasyRSA-3.0.8/vars
-echo "set_var EASYRSA_REQ_COUNTRY \"$COUNTRY\""   >> ~/EasyRSA-3.0.8/vars
-echo "set_var EASYRSA_REQ_PROVINCE \"$PROVINCE\"" >> ~/EasyRSA-3.0.8/vars
-echo "set_var EASYRSA_REQ_CITY      \"$CITY\""    >> ~/EasyRSA-3.0.8/vars
-echo "set_var EASYRSA_REQ_ORG        \"$ORG\""    >> ~/EasyRSA-3.0.8/vars
-echo "set_var EASYRSA_REQ_EMAIL       \"$EMAIL\"" >> ~/EasyRSA-3.0.8/vars
-echo "set_var EASYRSA_REQ_OU           \"$OU\""   >> ~/EasyRSA-3.0.8/vars
+# echo "set_var EASYRSA_PKI        \"$LOCAL\""      >> ~/EasyRSA-3.0.8/vars
+# echo "set_var EASYRSA_REQ_COUNTRY \"$COUNTRY\""   >> ~/EasyRSA-3.0.8/vars
+# echo "set_var EASYRSA_REQ_PROVINCE \"$PROVINCE\"" >> ~/EasyRSA-3.0.8/vars
+# echo "set_var EASYRSA_REQ_CITY      \"$CITY\""    >> ~/EasyRSA-3.0.8/vars
+# echo "set_var EASYRSA_REQ_ORG        \"$ORG\""    >> ~/EasyRSA-3.0.8/vars
+# echo "set_var EASYRSA_REQ_EMAIL       \"$EMAIL\"" >> ~/EasyRSA-3.0.8/vars
+# echo "set_var EASYRSA_REQ_OU           \"$OU\""   >> ~/EasyRSA-3.0.8/vars
+# echo "PKCS11_MODULE_PATH=\"dummy\""               >> ~/EasyRSA-3.0.8/vars
+# echo "PKCS11_PIN=\"dummy\""                       >> ~/EasyRSA-3.0.8/vars
 
-bash ~/EasyRSA-3.0.8/easyrsa init-pki \
+echo "export EASY_RSA=/etc/openvpn/cookbook"                    >> ~/EasyRSA-3.0.8/vars
+echo "export OPENSSL=\"openssl\""                               >> ~/EasyRSA-3.0.8/vars
+echo "export PKCS11TOOL=\"pkcs11-tool\""                        >> ~/EasyRSA-3.0.8/vars
+echo "export GREP=\"grep\""                                     >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`"  >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_DIR=\"$EASY_RSA/keys\""                        >> ~/EasyRSA-3.0.8/vars
+echo "export PKCS11_MODULE_PATH=\"dummy\""                      >> ~/EasyRSA-3.0.8/vars
+echo "export PKCS11_PIN=\"dummy\""                              >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_SIZE=2048"                                     >> ~/EasyRSA-3.0.8/vars
+echo "export CA_EXPIRE=3650"                                    >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_EXPIRE=1000"                                   >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_COUNTRY=\"EUA\""                               >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_PROVINCE="                                     >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_CITY="                                         >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_ORG=\"big Z\""                                 >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_OU="                                           >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_CN="                                           >> ~/EasyRSA-3.0.8/vars
+echo "export KEY_EMAIL=\"openvpn@example.com\""                 >> ~/EasyRSA-3.0.8/vars \
 
-bash ~/EasyRSA-3.0.8/easyrsa build-ca \
+# bash ~/EasyRSA-3.0.8/easyrsa init-pki \
 
-openssl x509 -in "$LOCAL/ca.crt" -text -noout \
+# bash ~/EasyRSA-3.0.8/easyrsa build-ca \
 
-bash ~/EasyRSA-3.0.8/easyrsa gen-crl \
+# openssl x509 -in "$LOCAL/ca.crt" -text -noout \
 
-openssl crl -noout -text -in "$LOCAL/crl.pem" \
+# bash ~/EasyRSA-3.0.8/easyrsa gen-crl \
 
-bash ~/EasyRSA-3.0.8/easyrsa build-server-full movpn-server \
+# openssl crl -noout -text -in "$LOCAL/crl.pem" \
 
-openssl x509 -noout -text -in "$LOCAL/issued/movpn-server.crt" \
+# bash ~/EasyRSA-3.0.8/easyrsa build-server-full movpn-server \
 
-read -p "Name client [client1]:" CLIENT
-CLIENT=${CLIENT:-client1}
+# openssl x509 -noout -text -in "$LOCAL/issued/movpn-server.crt" \
 
-bash ~/EasyRSA-3.0.8/easyrsa build-client-full "$CLIENT" \
+# read -p "Name client [client1]:" CLIENT
+# CLIENT=${CLIENT:-client1}
 
-openssl x509 -noout -text -in "$LOCAL/issued/$CLIENT.crt" 
+# bash ~/EasyRSA-3.0.8/easyrsa build-client-full "$CLIENT" \
+
+# openssl x509 -noout -text -in "$LOCAL/issued/$CLIENT.crt" 
