@@ -88,7 +88,7 @@ then
     cp -a "$PATH_SSL_ADMIN/active/ca.crt" "$PATH_MOVPN/movpn-ca.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
-    
+
 else
 
     if [[ -f "$PATH_CONFIG" ]]
@@ -97,7 +97,7 @@ else
     fi
    
     echo "Initializing..."
-    apt update -y && apt upgrade -y && apt install git -y && apt install make -y
+    apt update -y && apt upgrade -y && apt install git -y && apt install make -y && apt install openvpn -y
     git clone https://github.com/shadowbq/ssl-admin.git
     chmod +x "$DIR/configure"
     cd "$DIR" && ./configure
