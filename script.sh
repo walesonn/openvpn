@@ -86,7 +86,9 @@ then
     mkdir -p "$PATH_MOVPN"
     chmod 700 "$PATH_MOVPN"
     cp -a "$PATH_SSL_ADMIN/active/ca.crt" "$PATH_MOVPN/movpn-ca.crt"
-
+    cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
+    cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
+    
 else
 
     if [[ -f "$PATH_CONFIG" ]]
