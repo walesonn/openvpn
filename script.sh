@@ -70,23 +70,23 @@ echo "export KEY_OU="                                           >> ~/EasyRSA-3.0
 echo "export KEY_CN="                                           >> ~/EasyRSA-3.0.8/vars
 echo "export KEY_EMAIL=\"openvpn@example.com\""                 >> ~/EasyRSA-3.0.8/vars \
 
-# bash ~/EasyRSA-3.0.8/easyrsa init-pki \
+bash ~/EasyRSA-3.0.8/easyrsa init-pki \
 
-# bash ~/EasyRSA-3.0.8/easyrsa build-ca \
+bash ~/EasyRSA-3.0.8/easyrsa build-ca \
 
-# openssl x509 -in "$LOCAL/ca.crt" -text -noout \
+openssl x509 -in "$LOCAL/ca.crt" -text -noout \
 
-# bash ~/EasyRSA-3.0.8/easyrsa gen-crl \
+bash ~/EasyRSA-3.0.8/easyrsa gen-crl \
 
-# openssl crl -noout -text -in "$LOCAL/crl.pem" \
+openssl crl -noout -text -in "$LOCAL/crl.pem" \
 
-# bash ~/EasyRSA-3.0.8/easyrsa build-server-full movpn-server \
+bash ~/EasyRSA-3.0.8/easyrsa build-server-full movpn-server \
 
-# openssl x509 -noout -text -in "$LOCAL/issued/movpn-server.crt" \
+openssl x509 -noout -text -in "$LOCAL/issued/movpn-server.crt" \
 
-# read -p "Name client [client1]:" CLIENT
-# CLIENT=${CLIENT:-client1}
+read -p "Name client [client1]:" CLIENT
+CLIENT=${CLIENT:-client1}
 
-# bash ~/EasyRSA-3.0.8/easyrsa build-client-full "$CLIENT" \
+bash ~/EasyRSA-3.0.8/easyrsa build-client-full "$CLIENT" \
 
-# openssl x509 -noout -text -in "$LOCAL/issued/$CLIENT.crt" 
+openssl x509 -noout -text -in "$LOCAL/issued/$CLIENT.crt" 
