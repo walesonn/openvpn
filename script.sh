@@ -75,14 +75,17 @@
 # mkdir ~/ssl-admin \
 
 DIR=~/openvpn/ssl-admin
+PATH_SSL_ADMIN="/etc/ssl-admin"
 
 if [ -d "$DIR" ]; then
     rm -rf "$DIR"
 fi
 
 echo "Initializing..."
-apt update -y && apt upgrade -y && apt install git -y && apt install make
+apt update -y && apt upgrade -y && apt install git -y && apt install make -y
 git clone https://github.com/shadowbq/ssl-admin.git
 chmod +x "$DIR/configure"
 cd "$DIR" && ./configure
 cd "$DIR" && make install
+cp "$PATH_SSL_ADMIN/ssl-admin.conf.default" "$PATH_SSL_ADMIN/ssl-admin.conf"
+ssl-admin
