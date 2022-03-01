@@ -78,7 +78,7 @@ DIR=~/openvpn/ssl-admin
 PATH_SSL_ADMIN="/etc/ssl-admin"
 PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
 PATH_MOVPN="/etc/openvpn/movpn"
-SERVER_CONF=~/openvpn/movpn-04-01-server.conf
+SERVER_CONF=~/openvpn/server.conf
 
 if [[ -d "$DIR" ]]
 then
@@ -91,7 +91,21 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
     cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
-    openvpn --config "$SERVER_CONF" --askpass
+    touch ~/openvpn/client.conf
+
+    read -p "client [crt] name:" client
+    
+    echo "client" >> "~/openvpn/client.conf"
+    echo "proto udp" >> "~/openvpn/client.conf"
+    echo "remote $(curl icanhazip.com)" >> "~/openvpn/client.conf"
+    echo "port 1194" >> "~/openvpn/client.conf"
+    echo "dev tun" >> "~/openvpn/client.conf"
+    echo "nobind" >> "~/openvpn/client.conf"
+    echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> "~/openvpn/client.conf"
+    echo "cert /etc/openvpn/movpn/$client.crt" >> "~/openvpn/client.conf"
+    echo "key  /etc/openvpn/movpn/$client.key" >> "~/openvpn/client.conf"
+
+    # openvpn --config "$SERVER_CONF" --askpass
 
 else
 
