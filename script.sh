@@ -3,7 +3,8 @@
 DIR="$HOME/EasyRSA-3.0.8"
 LOCAL="/usr/local/etc/easy-rsa"
 
-echo "$DIR"
+echo "apagando $DIR ..."
+sleep 5
 
 if [ -d "$DIR" ]; then
     echo "clean..."
