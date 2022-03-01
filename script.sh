@@ -22,7 +22,8 @@ mv EasyRSA-3.0.8 ~/ \
 
 rm /tmp/EasyRSA* \
 
-echo "$LOCAL" \
+echo "all configs lives here $LOCAL" \
+sleep 5 \
 mkdir -p "$LOCAL" \
 
 read -p "country Ex[BR]:" COUNTRY
