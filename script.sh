@@ -78,32 +78,40 @@ DIR=~/openvpn/ssl-admin
 PATH_SSL_ADMIN="/etc/ssl-admin"
 PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
 
-if [[ -d "$DIR" ]]
-then
-    rm -rf "$DIR"
-fi
-
 if [[ -f "$PATH_CONFIG" ]]
 then
     rm "$PATH_CONFIG"
 fi
+   
 
-echo "Initializing..."
-apt update -y && apt upgrade -y && apt install git -y && apt install make -y
-git clone https://github.com/shadowbq/ssl-admin.git
-chmod +x "$DIR/configure"
-cd "$DIR" && ./configure
-cd "$DIR" && make install
+if [[ -d "$DIR" ]]
+then
+    #rm -rf "$DIR"
+    ssl-admin \
 
-echo "\$ENV{'KEY_SIZE'} = \"1024\";"                   > "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_DAYS'} = \"3650\";"                   >> "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_CN'} = \"\";"                         >> "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_CRL_LOC'} = \"URI:http://CRL_URI\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    mkdir -p "/etc/openvpn/movpn"
+    chmod 700 "/etc/openvpn/movpn"
+    
+else
+    echo "Initializing..."
+    apt update -y && apt upgrade -y && apt install git -y && apt install make -y
+    git clone https://github.com/shadowbq/ssl-admin.git
+    chmod +x "$DIR/configure"
+    cd "$DIR" && ./configure
+    cd "$DIR" && make install
 
-echo "\$ENV{'KEY_COUNTRY'} = \"BR\";"                  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_PROVINCE'} = \"Minas gerais\";"       >> "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_CITY'} = \"Caratinga\";"              >> "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_ORG'} = \"You have a big problem\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_EMAIL'} = \"sranonymouss@gmail.com\";">> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_SIZE'} = \"1024\";"                   > "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_DAYS'} = \"3650\";"                   >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_CN'} = \"\";"                         >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_CRL_LOC'} = \"URI:http://CRL_URI\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
 
-ssl-admin
+    echo "\$ENV{'KEY_COUNTRY'} = \"BR\";"                  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_PROVINCE'} = \"Minas gerais\";"       >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_CITY'} = \"Caratinga\";"              >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_ORG'} = \"You have a big problem\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_EMAIL'} = \"sranonymouss@gmail.com\";">> "$PATH_SSL_ADMIN/ssl-admin.conf"
+
+
+#first menu S option
+#after says y option to all others prompts
+#option 4 for sign cert for clients
