@@ -76,7 +76,7 @@
 
 DIR="$HOME/ssl-admin"
 
-if [ ! -d "$DIR"];then
+if [ ! -d "$DIR" ]; then
     echo "Initializing..."\
     sleep 3 \
     apt update -y && apt upgrade -y && apt install git -y \
