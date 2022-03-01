@@ -100,12 +100,14 @@ then
 
     if [[ -f "$PATH_MOVPN/dh2048.pem" ]]
     then
+    # 
     else
         cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
     fi
 
     if [[ -f "$PATH_MOVPN/ta.key" ]]
     then
+    # 
     else
         openvpn --genkey --secret "$PATH_MOVPN/ta.key"
     fi
