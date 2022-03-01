@@ -73,5 +73,12 @@
 # chmod 700 /etc/openvpn/movpn \
 
 # mkdir ~/ssl-admin \
-apt install git -y \
-git clone https://github.com/shadowbq/ssl-admin.git 
+
+DIR="$HOME/ssl-admin"
+
+if [ ! -d "$DIR"];then
+    echo "Initializing..."\
+    sleep 3 \
+    apt install git -y \
+    git clone https://github.com/shadowbq/ssl-admin.git 
+fi
