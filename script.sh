@@ -112,6 +112,7 @@ then
     echo "port 1194"                            >> ~/openvpn/client.conf
     echo "dev tun"                              >> ~/openvpn/client.conf
     echo "nobind"                               >> ~/openvpn/client.conf
+    echo "tls-auth /etc/openvpn/movpn/ta.key 1" >> ~/openvpn/client.conf
     echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> ~/openvpn/client.conf
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.conf
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.conf
