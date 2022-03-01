@@ -87,5 +87,14 @@ git clone https://github.com/shadowbq/ssl-admin.git
 chmod +x "$DIR/configure"
 cd "$DIR" && ./configure
 cd "$DIR" && make install
-cp "$PATH_SSL_ADMIN/ssl-admin.conf.default" "$PATH_SSL_ADMIN/ssl-admin.conf"
-chmod ug+rw "$PATH_SSL_ADMIN/ssl-admin.conf"
+
+echo "$ENV{'KEY_SIZE'} = \"1024\";"                   >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "$ENV{'KEY_DAYS'} = \"3650\";"                   >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "$ENV{'KEY_CN'} = "";"                           >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "$ENV{'KEY_CRL_LOC'} = \"URI:http://CRL_URI\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+
+echo "$ENV{'KEY_COUNTRY'} = \"BR\";"                  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "$ENV{'KEY_PROVINCE'} = \"Minas gerais\";"       >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "$ENV{'KEY_CITY'} = \"Caratinga\";"              >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "$ENV{'KEY_ORG'} = \"You have a big problem\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "$ENV{'KEY_EMAIL'} = \"sranonymouss@gmail.com\";">> "$PATH_SSL_ADMIN/ssl-admin.conf"
