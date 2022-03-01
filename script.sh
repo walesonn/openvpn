@@ -81,10 +81,11 @@ PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
 if [[ -d "$DIR" ]]
 then
     # rm -rf "$DIR"
-    ssl-admin \
-
+    ssl-admin 
     mkdir -p "/etc/openvpn/movpn"
     chmod 700 "/etc/openvpn/movpn"
+    cd "/etc/openvpn/movpn" && PKI="$PATH_SSL_ADMIN/active" \
+    cp -a "$PKI/ca.crt" "movpn-ca.crt"
 
 else
 
