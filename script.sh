@@ -98,6 +98,19 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
 
+    interface=$(ifconfig | grep "tun0")
+    openvpn_running=$(netstat -ntplu | grep "openvpn")
+
+    if [[ -n $interface ]]
+    then    
+        ifconfig tun0 down
+    fi
+
+    if [[ -n $openvpn_running ]]
+    then
+        killall openvpn
+    fi
+
     if [[ ! -f "$PATH_MOVPN/dh2048.pem" ]]
     then
         cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
@@ -147,7 +160,7 @@ else
     fi
    
     echo "Initializing..."
-    apt update -y && apt upgrade -y && apt install git -y && apt install make -y && apt install openvpn -y
+    apt update -y && apt upgrade -y && apt install git -y && apt install make -y && apt install openvpn -y && apt install net-tools -y
     git clone https://github.com/shadowbq/ssl-admin.git
     chmod +x "$DIR/configure"
     cd "$DIR" && ./configure
