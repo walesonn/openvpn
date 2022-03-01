@@ -91,7 +91,7 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
     cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
-    cat "$SERVER_CONF" | openvpn --config
+    openvpn --config "$SERVER_CONF"
 
 else
 
