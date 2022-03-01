@@ -97,7 +97,7 @@ cd "$DIR" && make install
 
 echo "\$ENV{'KEY_SIZE'} = \"1024\";"                   > "$PATH_SSL_ADMIN/ssl-admin.conf"
 echo "\$ENV{'KEY_DAYS'} = \"3650\";"                   >> "$PATH_SSL_ADMIN/ssl-admin.conf"
-echo "\$ENV{'KEY_CN'} = "";"                           >> "$PATH_SSL_ADMIN/ssl-admin.conf"
+echo "\$ENV{'KEY_CN'} = \"\";"                           >> "$PATH_SSL_ADMIN/ssl-admin.conf"
 echo "\$ENV{'KEY_CRL_LOC'} = \"URI:http://CRL_URI\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
 
 echo "\$ENV{'KEY_COUNTRY'} = \"BR\";"                  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
