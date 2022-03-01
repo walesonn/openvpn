@@ -84,4 +84,5 @@ echo "Initializing..."
 sleep 3 
 apt update -y && apt upgrade -y && apt install git -y 
 git clone https://github.com/shadowbq/ssl-admin.git
+chmod +x "$DIR/configure"
 cd "$DIR" && ./configure && make install
