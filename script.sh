@@ -145,7 +145,7 @@ then
     echo "port 1194"                            >> ~/openvpn/client.ovpn
     echo "dev tun"                              >> ~/openvpn/client.ovpn
     echo "nobind"                               >> ~/openvpn/client.ovpn
-    echo "remote-cert-tls server"               >> ~/openvpn/client.conf
+    echo "remote-cert-tls server"               >> ~/openvpn/client.ovpn
     echo "tls-auth /etc/openvpn/movpn/ta.key 1" >> ~/openvpn/client.ovpn
     echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> ~/openvpn/client.ovpn
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.ovpn
