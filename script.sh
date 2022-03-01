@@ -66,4 +66,12 @@ CLIENT=${CLIENT:-client1}
 
 bash ~/EasyRSA-3.0.8/easyrsa build-client-full "$CLIENT" \
 
-openssl x509 -noout -text -in "$LOCAL/issued/$CLIENT.crt" 
+openssl x509 -noout -text -in "$LOCAL/issued/$CLIENT.crt" \
+
+mkdir -p /etc/openvpn/movpn \
+
+chmod 700 /etc/openvpn/movpn \
+
+mkdir ~/ssl-admin \
+
+cd ~/ssl-admin && git clone https://github.com/shadowbq/ssl-admin.git . 
