@@ -81,8 +81,7 @@ if [ -d "$DIR" ]; then
 fi
 
 echo "Initializing..."
-sleep 3 
-apt update -y && apt upgrade -y && apt install git -y 
+apt update -y && apt upgrade -y && apt install git -y && apt install make
 git clone https://github.com/shadowbq/ssl-admin.git
 chmod +x "$DIR/configure"
 cd "$DIR" && ./configure
