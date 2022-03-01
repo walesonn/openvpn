@@ -78,13 +78,18 @@ DIR=~/openvpn/ssl-admin
 PATH_SSL_ADMIN="/etc/ssl-admin"
 PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
 PATH_MOVPN="/etc/openvpn/movpn"
-SERVER_CONF=~/openvpn/server.conf
+SERVER_CONF=~/openvpn/basic-udp-server.conf
 
 if [[ -d "$DIR" ]]
 then
     # rm -rf "$DIR"
     useradd "ovpn" -p "Alfa@ovpn3221"
     groupadd "nobody"
+
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+
+    iptables -t nat -A POSTROUTING -d "192.168.0.0/24" -s "10.0.0.0/24" -j ACCEPT
+    iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
     
     ssl-admin 
     mkdir -p "$PATH_MOVPN"
@@ -93,6 +98,7 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
     cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
+    openvpn --genkey --secret "$PATH_MOVPN/ta.key"
 
     openvpn --config "$SERVER_CONF" --askpass
     
