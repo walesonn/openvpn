@@ -74,7 +74,7 @@
 
 # mkdir ~/ssl-admin \
 
-DIR="$HOME/ssl-admin"
+DIR="~/openvpn/ssl-admin"
 
 if [ ! -d "$DIR" ]; then
     echo "Initializing..."
@@ -83,4 +83,4 @@ if [ ! -d "$DIR" ]; then
     git clone https://github.com/shadowbq/ssl-admin.git
 fi
 
-cd ~/ssl-admin && ./configure && make install
+cd "$DIR" && ./configure && make install
