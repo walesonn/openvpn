@@ -83,6 +83,8 @@ SERVER_CONF=~/openvpn/server.conf
 if [[ -d "$DIR" ]]
 then
     # rm -rf "$DIR"
+    useradd "ovpn" -p "Alfa@ovpn3221"
+    groupadd "nobody"
     
     ssl-admin 
     mkdir -p "$PATH_MOVPN"
