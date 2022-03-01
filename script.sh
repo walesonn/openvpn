@@ -98,17 +98,13 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
 
-    if [[ -f "$PATH_MOVPN/dh2048.pem" ]]
+    if [[ ! -f "$PATH_MOVPN/dh2048.pem" ]]
     then
-    # 
-    else
         cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
     fi
 
-    if [[ -f "$PATH_MOVPN/ta.key" ]]
+    if [[ ! -f "$PATH_MOVPN/ta.key" ]]
     then
-    # 
-    else
         openvpn --genkey --secret "$PATH_MOVPN/ta.key"
     fi
    
