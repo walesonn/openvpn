@@ -78,12 +78,6 @@ DIR=~/openvpn/ssl-admin
 PATH_SSL_ADMIN="/etc/ssl-admin"
 PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
 
-if [[ -f "$PATH_CONFIG" ]]
-then
-    rm "$PATH_CONFIG"
-fi
-   
-
 if [[ -d "$DIR" ]]
 then
     #rm -rf "$DIR"
@@ -93,6 +87,12 @@ then
     chmod 700 "/etc/openvpn/movpn"
 
 else
+
+    if [[ -f "$PATH_CONFIG" ]]
+    then
+        rm "$PATH_CONFIG"
+    fi
+   
     echo "Initializing..."
     apt update -y && apt upgrade -y && apt install git -y && apt install make -y
     git clone https://github.com/shadowbq/ssl-admin.git
