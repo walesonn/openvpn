@@ -89,7 +89,8 @@ then
     cp -a "$PATH_SSL_ADMIN/active/server.crt" "$PATH_MOVPN/movpn-server.crt"
     cp -a "$PATH_SSL_ADMIN/active/server.key" "$PATH_MOVPN/movpn-server.key"
     cd "$PATH_MOVPN" && openssl dhparam -out dh2048.pem 2048
-    
+    pid=`$(ps aux | grep "/usr/bin/perl /usr/bin/ssl-admin$" | cut -d " " -f 8)`
+    echo "$pid"
 else
 
     if [[ -f "$PATH_CONFIG" ]]
