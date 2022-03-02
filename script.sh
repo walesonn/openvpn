@@ -152,8 +152,6 @@ then
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.ovpn
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.ovpn
 
-    "$ip"
-
 else
 
     if [[ -f "$PATH_CONFIG" ]]
