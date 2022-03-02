@@ -74,6 +74,7 @@
 
 # mkdir ~/ssl-admin \
 
+ip=$(curl icanhazip.com)
 DIR=~/openvpn/ssl-admin
 PATH_SSL_ADMIN="/etc/ssl-admin"
 PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
@@ -85,7 +86,7 @@ then
     useradd "ovpn" -p "Alfa@ovpn3221"
     groupadd "nobody"
 
-    #echo 1 > /proc/sys/net/ipv4/ip_forward
+    echo 1 > /proc/sys/net/ipv4/ip_forward
 
     iptables -t nat -A POSTROUTING -d "192.168.0.0/24" -s "10.0.0.0/24" -j ACCEPT
     iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
@@ -122,12 +123,6 @@ then
    
     openvpn --config "$SERVER_CONF" --askpass
 
-    sysctl -w net.ipv4.ip_forward=1
-    
-    ip route add 10.200.0.0/24 via 192.168.122.1
-    
-    ip=$(curl icanhazip.com)
-
     read -p "client [crt] name:" client
     
     echo "client"                               > ~/openvpn/client.conf
@@ -154,6 +149,8 @@ then
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.ovpn
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.ovpn
 
+    readarray -d . -t strarr <<< "$ip"
+    cat "$strarr"
 
 else
 
