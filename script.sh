@@ -95,8 +95,10 @@ then
         echo "push \"route $gateway 255.255.255.0\""                            >> "$SERVER_CONF"
         #echo "push \"redirect-gateway [def1 local bypass-dhcp bypass-dns]\""    >> "$SERVER_CONF"
         echo "push \"redirect-gateway def1\""    >> "$SERVER_CONF"
-
     fi
+
+    #mkdir "$PATH_MOVPN/clients"
+    #echo "" > "$PATH_MOVPN/clients/client1"
 
     iptables -t nat -A POSTROUTING -d "137.184.86.0/24" -s "10.0.0.0/24" -j ACCEPT
     #iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
@@ -139,7 +141,7 @@ then
     read -p "client [crt] name:" client
     
     echo "client"                               > ~/openvpn/client.conf
-    echo "proto udp"                            >> ~/openvpn/client.conf
+    echo "proto tcp"                            >> ~/openvpn/client.conf
     echo "remote $ip"                           >> ~/openvpn/client.conf
     echo "port 1194"                            >> ~/openvpn/client.conf
     echo "dev tun"                              >> ~/openvpn/client.conf
@@ -151,7 +153,7 @@ then
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.conf
 
     echo "client"                               > ~/openvpn/client.ovpn
-    echo "proto udp"                            >> ~/openvpn/client.ovpn
+    echo "proto tcp"                            >> ~/openvpn/client.ovpn
     echo "remote $ip"                           >> ~/openvpn/client.ovpn
     echo "port 1194"                            >> ~/openvpn/client.ovpn
     echo "dev tun"                              >> ~/openvpn/client.ovpn
