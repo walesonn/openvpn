@@ -94,7 +94,6 @@ then
     iptables -t nat -A POSTROUTING -d "137.184.86.0/24" -s "10.0.0.0/24" -j ACCEPT
     iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
     
-    
     ssl-admin 
 
     mkdir -p "$PATH_MOVPN"
