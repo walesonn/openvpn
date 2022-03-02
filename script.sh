@@ -93,7 +93,7 @@ then
     if [[ -z "$result" ]]
     then
         echo "push \"route $gateway 255.255.255.0\""                            >> "$SERVER_CONF"
-        echo "push \"redirect-gateway [def1 local bypass-dhcp bypass-dns]\""    >> "$SERVER_CONF"
+        #echo "push \"redirect-gateway [def1 local bypass-dhcp bypass-dns]\""    >> "$SERVER_CONF"
         echo "push \"redirect-gateway def1\""    >> "$SERVER_CONF"
 
     fi
