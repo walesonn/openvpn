@@ -88,7 +88,7 @@ then
 
     echo 1 > /proc/sys/net/ipv4/ip_forward
 
-    echo "\npush \"route $ip 255.255.255.0\"" >> "$SERVER_CONF"
+    echo "push \"route $ip 255.255.255.0\"" >> "$SERVER_CONF"
 
     iptables -t nat -A POSTROUTING -d "192.168.0.0/24" -s "10.0.0.0/24" -j ACCEPT
     iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
