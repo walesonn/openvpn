@@ -92,11 +92,13 @@ then
     
     if [[ -z "$result" ]]
     then
-        echo "push \"route $gateway 255.255.255.0\"" >> "$SERVER_CONF"
+        echo "push \"route $gateway 255.255.255.0\""                            >> "$SERVER_CONF"
+        echo "push \"redirect-gateway [def1 local bypass-dhcp bypass-dns]\""    >> "$SERVER_CONF"
     fi
 
     iptables -t nat -A POSTROUTING -d "137.184.86.0/24" -s "10.0.0.0/24" -j ACCEPT
-    iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
+    #iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
+    iptables -t nat -I POSTROUTING -o eth0  -s "10.200.0.0/24" -j MASQUERADE
     
     ssl-admin 
 
