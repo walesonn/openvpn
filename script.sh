@@ -92,6 +92,7 @@ then
     iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
     
     ssl-admin 
+
     mkdir -p "$PATH_MOVPN"
     chmod 700 "$PATH_MOVPN"
     cp -a "$PATH_SSL_ADMIN/active/ca.crt" "$PATH_MOVPN/movpn-ca.crt"
@@ -149,8 +150,7 @@ then
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.ovpn
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.ovpn
 
-    readarray -d . -t strarr <<< "$ip"
-    cat "$strarr"
+    cat "$ip"
 
 else
 
