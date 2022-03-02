@@ -82,11 +82,10 @@ SERVER_CONF=~/openvpn/basic-udp-server.conf
 
 if [[ -d "$DIR" ]]
 then
-    # rm -rf "$DIR"
     useradd "ovpn" -p "Alfa@ovpn3221"
     groupadd "nobody"
 
-    echo 1 > /proc/sys/net/ipv4/ip_forward
+    #echo 1 > /proc/sys/net/ipv4/ip_forward
 
     iptables -t nat -A POSTROUTING -d "192.168.0.0/24" -s "10.0.0.0/24" -j ACCEPT
     iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
@@ -122,6 +121,10 @@ then
     fi
    
     openvpn --config "$SERVER_CONF" --askpass
+
+    sysctl -w net.ipv4.ip_forward=1
+    
+    ip route add 10.200.0.0/24 via 192.168.122.1
     
     ip=$(curl icanhazip.com)
 
