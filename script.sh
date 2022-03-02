@@ -75,6 +75,7 @@
 # mkdir ~/ssl-admin \
 
 ip=$(curl icanhazip.com)
+gateway="$(curl icanhazip.com | cut -d "." -f 1,2,3).0"
 DIR=~/openvpn/ssl-admin
 PATH_SSL_ADMIN="/etc/ssl-admin"
 PATH_CONFIG="/etc/ssl-admin/ssl-admin.conf"
@@ -88,7 +89,7 @@ then
 
     echo 1 > /proc/sys/net/ipv4/ip_forward
 
-    echo "push \"route $ip 255.255.255.0\"" >> "$SERVER_CONF"
+    echo "push \"route $gateway 255.255.255.0\"" >> "$SERVER_CONF"
 
     iptables -t nat -A POSTROUTING -d "137.184.86.0/24" -s "10.0.0.0/24" -j ACCEPT
     iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
