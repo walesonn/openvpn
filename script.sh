@@ -94,6 +94,8 @@ then
     then
         echo "push \"route $gateway 255.255.255.0\""                            >> "$SERVER_CONF"
         echo "push \"redirect-gateway [def1 local bypass-dhcp bypass-dns]\""    >> "$SERVER_CONF"
+        echo "push \"redirect-gateway def1\""    >> "$SERVER_CONF"
+
     fi
 
     iptables -t nat -A POSTROUTING -d "137.184.86.0/24" -s "10.0.0.0/24" -j ACCEPT
