@@ -90,7 +90,7 @@ then
 
     echo "push \"route $ip 255.255.255.0\"" >> "$SERVER_CONF"
 
-    iptables -t nat -A POSTROUTING -d "192.168.0.0/24" -s "10.0.0.0/24" -j ACCEPT
+    iptables -t nat -A POSTROUTING -d "137.184.86.0/24" -s "10.0.0.0/24" -j ACCEPT
     iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
     
     ssl-admin 
@@ -126,6 +126,7 @@ then
    
     openvpn --config "$SERVER_CONF" --askpass
 
+    # ip route add 10.200.0.0/24 via 192.168.122.1
     read -p "client [crt] name:" client
     
     echo "client"                               > ~/openvpn/client.conf
