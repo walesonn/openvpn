@@ -84,8 +84,6 @@ SERVER_CONF=~/openvpn/basic-udp-server.conf
 
 if [[ -d "$DIR" ]]
 then
-    useradd "ovpn" -p "Alfa@ovpn3221"
-    groupadd "nobody"
 
     echo 1 > /proc/sys/net/ipv4/ip_forward
     result=$(cat basic-udp-server.conf | grep "push")
@@ -163,6 +161,10 @@ then
     echo "ca   /etc/openvpn/movpn/movpn-ca.crt" >> ~/openvpn/client.ovpn
     echo "cert /etc/openvpn/movpn/$client.crt"  >> ~/openvpn/client.ovpn
     echo "key  /etc/openvpn/movpn/$client.key"  >> ~/openvpn/client.ovpn
+    echo "http-proxy $proxy 80 none"            >> ~/openvpn/client.ovpn
+    echo "--http-proxy-retry"                   >> ~/openvpn/client.ovpn
+    #echo "socks-proxy-server 1080 user pass"    >> ~/openvpn/client.ovpn
+    
 
 else
 
