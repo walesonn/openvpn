@@ -98,9 +98,9 @@ then
     #mkdir "$PATH_MOVPN/clients"
     #echo "" > "$PATH_MOVPN/clients/client1"
 
-    iptables -t nat -A POSTROUTING -d "137.184.86.0/24" -s "10.0.0.0/24" -j ACCEPT
-    #iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
-    iptables -t nat -I POSTROUTING -o eth0  -s "10.200.0.0/24" -j MASQUERADE
+    iptables -t nat -A POSTROUTING -d "$gateway/24" -s "10.0.0.0/24" -j ACCEPT
+    iptables -t nat -A POSTROUTING -s "10.0.0.0/24" -o eth0 -j MASQUERADE
+    #iptables -t nat -I POSTROUTING -o eth0  -s "10.200.0.0/24" -j MASQUERADE
     
     ssl-admin 
 
@@ -180,7 +180,7 @@ else
     cd "$DIR" && ./configure
     cd "$DIR" && make install
 
-    echo "\$ENV{'KEY_SIZE'} = \"1024\";"                   > "$PATH_SSL_ADMIN/ssl-admin.conf"
+    echo "\$ENV{'KEY_SIZE'} = \"1024\";"                   >  "$PATH_SSL_ADMIN/ssl-admin.conf"
     echo "\$ENV{'KEY_DAYS'} = \"3650\";"                   >> "$PATH_SSL_ADMIN/ssl-admin.conf"
     echo "\$ENV{'KEY_CN'} = \"\";"                         >> "$PATH_SSL_ADMIN/ssl-admin.conf"
     echo "\$ENV{'KEY_CRL_LOC'} = \"URI:http://CRL_URI\";"  >> "$PATH_SSL_ADMIN/ssl-admin.conf"
